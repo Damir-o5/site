@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Админ — Панель{% endblock %}
+{% block body %}
+  <div class="topbar">
+    <span class="badge">Мансарда</span>
+    <div class="nav">
+      <a href="{{ url_for('admin_dashboard') }}" class="active">Панель</a>
+      <a href="{{ url_for('admin_menus') }}">Меню</a>
+      <a href="{{ url_for('admin_categories') }}">Категории</a>
+      <a href="{{ url_for('admin_dishes') }}">Блюда</a>
+    </div>
+    <a class="btn right" href="{{ url_for('admin_logout') }}">Выйти</a>
+  </div>
+
+  <div class="container">
+    <h2>Статистика</h2>
+    <div class="grid2">
+      <div class="alert info">Меню: <b>{{ stats.menus }}</b></div>
+      <div class="alert info">Категорий: <b>{{ stats.categories }}</b></div>
+      <div class="alert info">Блюд: <b>{{ stats.dishes }}</b></div>
+    </div>
+
+    <h2 class="mt">Телефон для хедера</h2>
+    <form method="post" class="mt">
+      <label>Телефон (будет показываться вместо названия при скролле)</label>
+      <input name="phone" value="{{ settings.phone or '' }}" placeholder="+7 (777) 123-45-67">
+      <button class="btn btn-primary" style="margin-top:8px;">Сохранить</button>
+    </form>
+
+    <div class="mt">
+      <a class="btn" href="{{ url_for('index') }}">Открыть публичное меню</a>
+    </div>
+  </div>
+{% endblock %}
